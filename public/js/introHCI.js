@@ -25,10 +25,15 @@ function addProjectDetails(e) {
 	var projectID = $(this).closest('.project').attr('id');
 	// get rid of 'project' from the front of the id 'project3'
 	var idNumber = projectID.substr('project'.length);
-
+	$.get("/project/" + idNumber,callTest);
 	console.log("User clicked on project " + idNumber);
 }
-
+function callTest(result)
+{
+	console.log(result);
+	var newHTML='<img src = '+result.image + '>' + '</img>'+ '<p>' + result.summary+'</p>';
+	$("#project"+result.id + " .details").html(newHTML);
+}
 /*
  * Make an AJAX call to retrieve a color palette for the site
  * and apply it
